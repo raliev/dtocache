@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+		http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+		
+	<context:annotation-config/>
+	<cache:annotation-driven cache-manager="mongoCacheManager"  />
+	<!--...-->
+
+	<alias name="defaultProductFacade" alias="productVariantFacade"/>
+	<bean id="defaultProductFacade" class="org.training.facades.product.MyProductFacade"
+	>
+		<property name="productService" ref="productService"/>
+		<property name="customerReviewService" ref="customerReviewService"/>
+		<property name="userService" ref="userService"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+
+		<property name="customerReviewConverter" ref="customerReviewConverter"/>
+		<property name="productConverter" ref="productConverter"/>
+		<property name="productConfiguredPopulator" ref="productConfiguredPopulator"/>
+
+		<property name="commerceProductReferenceService" ref="commerceProductReferenceService"/>
+		<property name="referenceDataProductReferenceConverter" ref="referenceDataProductReferenceConverter"/>
+		<property name="referenceProductConfiguredPopulator" ref="productConfiguredPopulator"/>
+		<property name="productConfigurationConverter" ref="orderEntryProductInfoConverter"/>
+		<property name="configurationHandlerFactory" ref="productConfigurationHandlerFactory"/>
+		<property name="configuratorSettingsService" ref="configuratorSettingsService"/>
+	</bean>
+
+
+
+</beans>
